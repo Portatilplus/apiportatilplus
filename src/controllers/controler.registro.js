@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
 import pool from "../database/db";
+import bcrypt from 'bcrypt';
 import mensajes from "../res/mensaje";
 import jwt from "jsonwebtoken"
 import { config } from 'dotenv';
@@ -54,6 +54,13 @@ const agregarregistro =async(req, res)=>{
 
 const login=async(req,res)=>{
     const {correo, contrasena} = req.body;
+
+
+    if(!correo || !contrasena){
+        mensajes.success(req, res, 200, "campos vacios");
+        return;
+    }
+    
     try {
         const respuesta = await pool.query(`CALL sp_buscar_registro_usuario(?);`,[correo])
     if(respuesta[0][0]==0){
