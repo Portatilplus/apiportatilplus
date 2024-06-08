@@ -1,7 +1,7 @@
-import pool from "../database/db";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt"
+import pool from "../database/db.js";
 import mensajes from "../res/mensaje";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import { config } from 'dotenv';
 config();
 
@@ -15,6 +15,8 @@ const agregarregistro =async(req, res)=>{
     const contrasenasincifrar = req.body.contrasena;
     const rol = req.body.rol;
     const contrasena = req.body.contrasena;
+
+    
 
     if(!nombre || !apellido || !telefono || !telefono || !correo || !contrasena || !rol){
         mensajes.error(req, res, 400, "campos vacios");
@@ -49,44 +51,49 @@ const agregarregistro =async(req, res)=>{
 }
 // este es el de login
 
-
-
-
-const login=async(req,res)=>{
-    const {correo, contrasena} = req.body;
-
+const login = async(req, res)=>{
+    const {correo, contrasena}  = req.body;
+    
 
     if(!correo || !contrasena){
-        mensajes.success(req, res, 200, "campos vacios");
+        mensajes.error(req, res, 401, "campos vacios");
         return;
     }
-    
+// !resultado || resultado.length === 0
     try {
-        const respuesta = await pool.query(`CALL sp_buscar_registro_usuario(?);`,[correo])
-    if(respuesta[0][0]==0){
-          mensajes.error(req, res, 401, "correo no existe");
-          return;
+        const resultado = await pool.query(`CALL sp_login(?);`,[correo]);
+        if (resultado[0][0]==0) {
+            error(req, res, 400, "Usuario no encontrado");
+            return;
     }
 
-    const usuario = respuesta[0];
-    const match = await bcrypt.compare(contrasena, respuesta[0][0][0].contrasena);
-    if(!match){
-        mensajes.error(req, res, 401, "contraseña incorrecta");
-        return;
-    }
-    // const payload = {
-    //     "usuario":usuario.correo,
-    //     "contrasena":contrasena.contrasena
-    // };
-    // // token
-    // const token= jwt.sign(payload, process.env.PRIVATE_KEY,
-    //     {expiresIn:process.env.EXPIRES_IN}
-    // );
+        const contracorrecta = await bcrypt.compare(contrasena, resultado[0][0][0].contrasena);
+        if (!contracorrecta) {
+            mensajes.error(req, res, 400, "contraseña incorrecta");
+            return;
+        }else{
+            const payload ={
+                // nombre: resultado.nombre,
+                // apellido: resultado.apellido,
+                // telefono: resultado.telefono,
+                correo: resultado.correo
+                // rol: resultado.rol
+            }
+            let token = jwt.sign(
+                payload,
+                process.env.PRIVATE_KEY,
+                {expiresIn: process.env.EXPIRES_IN});
+    
+            mensajes.success(req, res, 200, {token});
 
+
+        }
+        
+
+        
     } catch (error) {
-      mensajes.error(req, res, 500, "error en el login");
+        mensajes.error(req, res, 500, "error al loguearse");
     }
-
 }
 
 
@@ -94,3 +101,5 @@ export const metodos={
     agregarregistro,
     login
 }
+
+
