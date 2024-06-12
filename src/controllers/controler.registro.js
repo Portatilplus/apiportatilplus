@@ -44,7 +44,6 @@ const agregarregistro =async(req, res)=>{
 
         
     } catch (error) {
-        // console.error("Error al agregar registro:", error);
 
         mensajes.error(req, res, 500, "error al agregar registro");
     }
@@ -59,7 +58,6 @@ const login = async(req, res)=>{
         mensajes.error(req, res, 401, "campos vacios");
         return;
     }
-// !resultado || resultado.length === 0
     try {
         const resultado = await pool.query(`CALL sp_login(?);`,[correo]);
         if (resultado[0][0]==0) {
@@ -73,11 +71,7 @@ const login = async(req, res)=>{
             return;
         }else{
             const payload ={
-                // nombre: resultado.nombre,
-                // apellido: resultado.apellido,
-                // telefono: resultado.telefono,
                 correo: resultado.correo
-                // rol: resultado.rol
             }
             let token = jwt.sign(
                 payload,
@@ -87,14 +81,24 @@ const login = async(req, res)=>{
             mensajes.success(req, res, 200, {token});
 
 
-        }
-        
+            // cookkie
+        //     const cookieOption = {
+        //         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+        //         httpOnly: true
+        //     };
+        //     res.cookie("jwt", token, cookieOption);
 
-        
+        //     mensajes.success(req, res, 200, { token });
+        //     return;
+        }
     } catch (error) {
         mensajes.error(req, res, 500, "error al loguearse");
     }
 }
+
+
+
+
 
 
 export const metodos={
