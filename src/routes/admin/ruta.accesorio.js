@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { metodos } from "../../controllers/admin/controler.accesorio";
-import { verificarToken } from "../../middleware/oauth";
 
 const rutaaccesorio = Router();
 

@@ -4,8 +4,8 @@ import mensaje from "../../res/mensaje";
 //  metodos 
 const listarcomputador = async(req, res)=>{
     try {
-        const respuesta = await pool.query(`CALL sp_listar_registro_computador();`);
-        mensaje.success(req, res, 200,respuesta[0])
+        const [respuesta] = await pool.query(`CALL sp_listar_registro_computador();`);
+        mensaje.success(req, res, 200,respuesta[0]);
     } catch (error) {
         mensaje.error(req, res, 500, "error al mostrar computadores")
     }

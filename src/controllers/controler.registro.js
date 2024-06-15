@@ -79,17 +79,6 @@ const login = async(req, res)=>{
                 {expiresIn: process.env.EXPIRES_IN});
     
             mensajes.success(req, res, 200, {token});
-
-
-            // cookkie
-        //     const cookieOption = {
-        //         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-        //         httpOnly: true
-        //     };
-        //     res.cookie("jwt", token, cookieOption);
-
-        //     mensajes.success(req, res, 200, { token });
-        //     return;
         }
     } catch (error) {
         mensajes.error(req, res, 500, "error al loguearse");

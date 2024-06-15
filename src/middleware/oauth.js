@@ -8,7 +8,6 @@ export const verificarToken =async (req, res, next) => {
 
     if(!token){
        return mensajes.success(req, res, 401, "acceso denegado");
-        
     }
 
     try {
@@ -20,26 +19,24 @@ export const verificarToken =async (req, res, next) => {
 }
 
 
-// export const roles = async (req, res, next) => {
-//     const {correo} = req.correo;
+// export const roles = (...rolesPermitidos) => {
+//   return async (req, res, next) => {
+//     const { correo } = req.correo;
 
 //     try {
-//         const resultado = await pool.query(`CALL sp_roles(?);`,[correo]);
-//         const urol = resultado[0][0].rol;
+//       const resultado = await pool.query(`CALL sp_roles('${correo}')`);
+//       const userRol = resultado[0][0].rol;
 
+//       if (!rolesPermitidos.includes(userRol)) {
+//         return mensajes.error(req, res, 403, "Acceso denegado");
+//       }
 
-//         const rolesPermitidos = ['Admin', 'Instructor', 'Usuario'];
-    
-//         if(!rolesPermitidos.includes(urol)){
-//             mensajes.error(req, res, 401, "no tienes permisos");
-//             return;
-//         }
-//         next();
+//       next();
 //     } catch (error) {
-//         mensajes.error(req, res, 500, "error al verificar rol");
-//         return;
+//       return mensajes.error(req, res, 500, "Error al verificar rol");
 //     }
-// }
+//   };
+// };
 
 
 

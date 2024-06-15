@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { metodos } from "../../controllers/admin/controles.histroial";
-import { verificarToken } from "../../middleware/oauth";
 const rutahistorial = Router();
 
 
