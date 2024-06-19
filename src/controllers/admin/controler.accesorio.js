@@ -47,9 +47,9 @@ const modificaraccesorio =async(req, res)=>{
 };
 
 const eliminaraccesorio =async(req, res)=>{
-    const {id_accesorio} = req.body;
+    const id_accesorio = req.params.id_accesorio;
     try {
-        const respuesta = await pool.query(`CALL sp_eliminar_accesorio(${id_accesorio});`);
+        const respuesta = await pool.query(`CALL sp_eliminar_accesorio(?);`,[id_accesorio]);
         if(respuesta[0].affectedRows == 1){
             mensaje.success(req, res, 200, "accesorio eliminado");
         }else{

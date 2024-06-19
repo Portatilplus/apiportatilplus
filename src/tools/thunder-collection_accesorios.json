@@ -1,0 +1,84 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "accesorios",
+    "collectionId": "8d1638a5-5927-454a-84e3-fbbf06a187b5",
+    "dateExported": "2024-06-17T06:44:34.273Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2f9ea655-945b-4ff9-a0c0-2a266fa4c7f1",
+            "colId": "8d1638a5-5927-454a-84e3-fbbf06a187b5",
+            "containerId": "",
+            "name": "agregar",
+            "url": "http://localhost:5000/admin/accesorio",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-03T01:56:33.992Z",
+            "modified": "2024-06-17T04:19:36.376Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTgxNjMxNzcsImV4cCI6MTcxODE2NTg3N30.5PcvjYHpfwGZPfo7-R0Yia_SxH2nYtqB9z7qw6bNgHM"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"numero_accesorio\":123,\n  \"nombre_accesorio\":\"cables\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "25ddff89-6b7c-43ee-983a-314adcf75fa0",
+            "colId": "8d1638a5-5927-454a-84e3-fbbf06a187b5",
+            "containerId": "",
+            "name": "modificar",
+            "url": "http://localhost:5000/admin/accesorio",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-06-03T02:02:11.276Z",
+            "modified": "2024-06-17T04:19:51.694Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg0MTUyNDgsImV4cCI6MTcxODQxNzk0OH0.wzV5eHsWxjIYvTPjd8nS3z1AN9NPHR8ekpqQL0dZ2fg"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_accesorio\":4 ,\n  \"numero_accesorio\":3212,\n  \"nombre_accesorio\":\"cable\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "fdbf8583-4f92-42cb-a9a4-a7e687e9d4be",
+            "colId": "8d1638a5-5927-454a-84e3-fbbf06a187b5",
+            "containerId": "",
+            "name": "eliminar",
+            "url": "http://localhost:5000/admin/accesorio",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-06-03T02:05:08.218Z",
+            "modified": "2024-06-17T04:20:14.715Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_accesorio\":4\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "8e32c46d-e701-49b8-8579-9f863ee6b923",
+            "colId": "8d1638a5-5927-454a-84e3-fbbf06a187b5",
+            "containerId": "",
+            "name": "listar",
+            "url": "http://localhost:5000/api/accesorio",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-06-03T02:07:53.510Z",
+            "modified": "2024-06-05T20:40:14.749Z",
+            "headers": []
+        }
+    ],
+    "ref": "qsWRkYOC9-ANVrUFa8nDTe1Ysmz4x97-MOn2WhjAoMUA3rv3THK_234ATd7Etg8rpEn7i7FxRVeYfYVw12azFg"
+}

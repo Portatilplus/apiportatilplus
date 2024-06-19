@@ -17,7 +17,7 @@ var _oauth = require("../middleware/oauth");
 var rutas = (0, _express.Router)();
 // rutas admin
 rutas.use("/admin", _ruta["default"]);
-rutas.use("/admin", _oauth.verificarToken, _ruta2["default"]);
+rutas.use("/admin", _ruta2["default"]);
 rutas.use("/admin", _oauth.verificarToken, _ruta3["default"]);
 rutas.use("/admin", _oauth.verificarToken, _ruta4["default"]);
 rutas.use("/admin", _oauth.verificarToken, _ruta5["default"]);

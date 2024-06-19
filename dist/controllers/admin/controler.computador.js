@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.metodos = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _db = _interopRequireDefault(require("../../database/db"));
 var _mensaje = _interopRequireDefault(require("../../res/mensaje"));
 //  metodos 
 var listarcomputador = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var respuesta;
+    var _yield$pool$query, _yield$pool$query2, respuesta;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -20,19 +21,21 @@ var listarcomputador = /*#__PURE__*/function () {
           _context.next = 3;
           return _db["default"].query("CALL sp_listar_registro_computador();");
         case 3:
-          respuesta = _context.sent;
+          _yield$pool$query = _context.sent;
+          _yield$pool$query2 = (0, _slicedToArray2["default"])(_yield$pool$query, 1);
+          respuesta = _yield$pool$query2[0];
           _mensaje["default"].success(req, res, 200, respuesta[0]);
-          _context.next = 10;
+          _context.next = 12;
           break;
-        case 7:
-          _context.prev = 7;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
           _mensaje["default"].error(req, res, 500, "error al mostrar computadores");
-        case 10:
+        case 12:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return function listarcomputador(_x, _x2) {
     return _ref.apply(this, arguments);

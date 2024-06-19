@@ -117,16 +117,6 @@ var login = /*#__PURE__*/function () {
           _mensaje["default"].success(req, res, 200, {
             token: token
           });
-
-          // cookkie
-          //     const cookieOption = {
-          //         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-          //         httpOnly: true
-          //     };
-          //     res.cookie("jwt", token, cookieOption);
-
-          //     mensajes.success(req, res, 200, { token });
-          //     return;
         case 22:
           _context2.next = 27;
           break;

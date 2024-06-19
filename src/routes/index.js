@@ -10,12 +10,12 @@ import { verificarToken} from "../middleware/oauth";
 
 const rutas = Router();
 // rutas admin
-rutas.use("/admin", rutaregistro);
-rutas.use("/admin", rutacomputador);
-rutas.use("/admin",verificarToken,rutaaccesorio);
-rutas.use("/admin",verificarToken,rutasancion);
-rutas.use("/admin",verificarToken,rutaretiro);
-rutas.use("/admin",verificarToken, rutahistorial);
+rutas.use("/", rutaregistro);
+rutas.use("/admin" ,rutacomputador);
+rutas.use("/admin",rutaaccesorio);
+rutas.use("/admin",rutasancion);
+rutas.use("/admin",rutaretiro);
+rutas.use("/admin", rutahistorial);
 
 
 // rutas user

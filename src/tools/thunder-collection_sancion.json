@@ -1,0 +1,74 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "sancion",
+    "collectionId": "b89a4614-bd5c-4c98-930c-e8b85e870ded",
+    "dateExported": "2024-06-17T06:44:29.419Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2ea7c0ba-7c60-4bce-919c-2da25c816256",
+            "colId": "b89a4614-bd5c-4c98-930c-e8b85e870ded",
+            "containerId": "",
+            "name": "agrgar",
+            "url": "http://localhost:5000/admin/sancion",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-03T18:29:16.886Z",
+            "modified": "2024-06-17T04:20:31.557Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_registro\":3,\n  \"motivo\":\"daño el cragador\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "595c5be5-4183-481e-9551-f49422bcecb5",
+            "colId": "b89a4614-bd5c-4c98-930c-e8b85e870ded",
+            "containerId": "",
+            "name": "listar",
+            "url": "http://localhost:5000/api/sancion",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-06-03T18:33:25.515Z",
+            "modified": "2024-06-05T20:42:04.070Z",
+            "headers": []
+        },
+        {
+            "_id": "76acbf80-ea63-4823-8b28-1357b5aeb6aa",
+            "colId": "b89a4614-bd5c-4c98-930c-e8b85e870ded",
+            "containerId": "",
+            "name": "modifcar",
+            "url": "http://localhost:4000/api/sancion",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-06-03T18:39:59.844Z",
+            "modified": "2024-06-03T18:40:37.813Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_sancion\":2,\n  \"id_registro\":3,\n  \"motivo\":\"daño el computador\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b8f3075e-71d5-408a-8743-cd844e61fcc1",
+            "colId": "b89a4614-bd5c-4c98-930c-e8b85e870ded",
+            "containerId": "",
+            "name": "eliminar",
+            "url": "http://localhost:4000/api/sancion",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-06-03T18:43:09.593Z",
+            "modified": "2024-06-03T18:43:26.590Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_sancion\":1\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "UoXwE_VZ36TqA-CMGJdOxREOmdmQcCvLLb4zNfbtOGDTxaI6uXdFC_8KEh6TiAsEe_dRJBt-YPx7dbOfvwyryA"
+}

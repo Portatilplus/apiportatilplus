@@ -11,9 +11,10 @@ const listarcomputador = async(req, res)=>{
     }
 }
 const agregarcomputador = async(req, res)=>{
-    const {marca,modelo,area,estado_computador} = req.body;
+    const {marca,modelo,area,estado_computador,fecha} = req.body;
 
-    if(!marca || !modelo || !area || !estado_computador){
+
+    if(!marca || !modelo || !area || !estado_computador|| !fecha){
         mensaje.error(req, res, 400, "campos vacios");
         return;
     }
@@ -22,7 +23,7 @@ const agregarcomputador = async(req, res)=>{
         const respuesta = await pool.query(`CALL sp_agregar_registro_computador('${marca}',
             '${modelo}',
             '${area}',
-            '${estado_computador}');`)
+            '${estado_computador}','${fecha}');`)
         if(respuesta[0].affectedRows==1){
             mensaje.success(req, res, 200, "computador agregado");
         }else{
@@ -35,13 +36,13 @@ const agregarcomputador = async(req, res)=>{
 }
 
 const modificarcomputador = async(req, res)=>{
-    const {idcomputador,marca,modelo,area,estado_computador} = req.body;
+    const {idcomputador,marca,modelo,area,estado_computador,fecha} = req.body;
     
     try {
     const respuesta = await pool.query(`CALL sp_modificar_registro_computador('${idcomputador}','${marca}',
     '${modelo}',
     '${area}',
-    '${estado_computador}');`);
+    '${estado_computador}','${fecha}');`);
     if(respuesta[0].affectedRows==1){
         mensaje.success(req, res, 200, "computador modificado");
     }else{
@@ -52,19 +53,22 @@ const modificarcomputador = async(req, res)=>{
     }
 }
 
-const eleminarcomputador = async(req, res)=>{
-    const {idcomputador} = req.body;
+const eleminarcomputador = async (req, res) => {
+    const idcomputador = req.params.idcomputador;
+
     try {
-        const respuesta = await pool.query(`CALL sp_eliminar_registro_computador(${idcomputador});`)
-        if(respuesta[0].affectedRows==1){
-            mensaje.success(req, res, 200, "computador eliminado");
-        }else{
-            mensaje.error(req, res, 400, "error al eliminar computador");
+        const respuesta = await pool.query('CALL sp_eliminar_registro_computador(?)', [idcomputador]);
+
+        if (respuesta[0].affectedRows === 1) {
+            mensaje.success(req, res, 200, "Computador eliminado");
+        } else {
+            mensaje.error(req, res, 400, "Error al eliminar computador");
         }
     } catch (error) {
-        mensaje.error(req, res, 500, "error al intentar eliminar");
+        mensaje.error(req, res, 500, "Error al intentar eliminar");
     }
-}
+};
+
 
 export const metodos ={
     agregarcomputador,
