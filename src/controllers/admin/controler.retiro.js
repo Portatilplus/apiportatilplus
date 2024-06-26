@@ -44,7 +44,7 @@ const modificarretiro=async(req, res)=>{
     }
 }  
 const eliminarretiro=async(req, res)=>{
-    const {id_retiro} = req.body;
+    const id_retiro = req.params.id_retiro;
     try {
         const respuesta = await pool.query(`CALL sp_eliminar_retiro(${id_retiro});`);
         if(respuesta[0].affectedRows == 1){

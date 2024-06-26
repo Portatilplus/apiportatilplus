@@ -61,25 +61,25 @@ const login = async(req, res)=>{
     try {
         const resultado = await pool.query(`CALL sp_login(?);`,[correo]);
         if (resultado[0][0]==0) {
-            error(req, res, 400, "Usuario no encontrado");
+            mensajes.error(req, res, 400, "Usuario no encontrado");
             return;
     }
-
         const contracorrecta = await bcrypt.compare(contrasena, resultado[0][0][0].contrasena);
         if (!contracorrecta) {
             mensajes.error(req, res, 400, "contraseña incorrecta");
             return;
         }else{
             const payload ={
-                correo: resultado.correo
+                correo: resultado.correo,
+                rol : resultado.rol
             }
             let token = jwt.sign(
                 payload,
                 process.env.PRIVATE_KEY,
                 {expiresIn: process.env.EXPIRES_IN});
     
-            mensajes.success(req, res, 200, {token});
-        }
+          mensajes.success(req, res, 200, {token});
+        }       
     } catch (error) {
         mensajes.error(req, res, 500, "error al loguearse");
     }

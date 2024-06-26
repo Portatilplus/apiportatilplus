@@ -6,9 +6,9 @@ const rutaretiro = Router();
 
 
 rutaretiro.get("/retiro", metodos.listarretiro);
-rutaretiro.post("/retiro", verificarToken, metodos.agregarretiro);
-rutaretiro.put("/retiro", verificarToken, metodos.modificarretiro);
-rutaretiro.delete("/retiro", verificarToken, metodos.eliminarretiro);
+rutaretiro.post("/retiro", metodos.agregarretiro);
+rutaretiro.put("/retiro/", metodos.modificarretiro);
+rutaretiro.delete("/retiro/:id_retiro", metodos.eliminarretiro);
 
 
 

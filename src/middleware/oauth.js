@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 import mensajes from "../res/mensaje";
 import { config } from "dotenv";
+
 config();
+
 
 export const verificarToken =async (req, res, next) => {
     const token = req.headers["x-access-token"]
@@ -19,25 +21,20 @@ export const verificarToken =async (req, res, next) => {
 }
 
 
-// export const roles = (...rolesPermitidos) => {
-//   return async (req, res, next) => {
-//     const { correo } = req.correo;
 
+
+// const autorole = async (req, res, next)=>{
 //     try {
-//       const resultado = await pool.query(`CALL sp_roles('${correo}')`);
-//       const userRol = resultado[0][0].rol;
-
-//       if (!rolesPermitidos.includes(userRol)) {
-//         return mensajes.error(req, res, 403, "Acceso denegado");
-//       }
-
-//       next();
+//         const rol = await pool.query(`CALL sp_roles()`)
+//         if(rol === ' Admin'){
+//            return mensajes.success(req, res,200, "admin");
+//         }else if(rol==='Usuario'){
+//            return mensajes.success(req, res,200, "Usuario");
+//         }
 //     } catch (error) {
-//       return mensajes.error(req, res, 500, "Error al verificar rol");
+//         return mensajes.error(req, res, 500, "error al verificar rol"); 
 //     }
-//   };
-// };
 
-
+// }
 
 

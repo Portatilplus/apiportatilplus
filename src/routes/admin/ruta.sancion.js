@@ -6,8 +6,8 @@ import { verificarToken } from "../../middleware/oauth";
 const rutasancion = Router();
 
 rutasancion.get("/sancion", metodos.listarsancion);
-rutasancion.post("/sancion", verificarToken, metodos.agregarsancion);
-rutasancion.put("/sancion", verificarToken, metodos.modificarsancion);
-rutasancion.delete("/sancion", verificarToken, metodos.eliminarsancion);
+rutasancion.post("/sancion",  metodos.agregarsancion);
+rutasancion.put("/sancion", metodos.modificarsancion);
+rutasancion.delete("/sancion/:id_sancion",  metodos.eliminarsancion);
 
 export default rutasancion;

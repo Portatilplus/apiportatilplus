@@ -42,7 +42,7 @@ const modificarsancion =async(req, res)=>{
     }
 }  
 const eliminarsancion =async(req, res)=>{
-    const {id_sancion} = req.body;
+    const id_sancion = req.params.id_sancion;
     try {
         const respuesta = await pool.query(`CALL sp_eliminar_sancion(${id_sancion});`);
         if(respuesta[0].affectedRows == 1){

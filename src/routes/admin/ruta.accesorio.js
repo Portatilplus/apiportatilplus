@@ -6,7 +6,7 @@ const rutaaccesorio = Router();
 
 rutaaccesorio.get("/accesorio",metodos.listaraccesorio);
 rutaaccesorio.post("/accesorio",metodos.agregaraccesorio);
-rutaaccesorio.put("/accesorio", metodos.modificaraccesorio);
+rutaaccesorio.put("/accesorio/", metodos.modificaraccesorio);
 rutaaccesorio.delete("/accesorio/:id_accesorio",  metodos.eliminaraccesorio);
 
 

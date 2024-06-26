@@ -6,11 +6,10 @@ import rutasancion from "./admin/ruta.sancion";
 import rutaretiro from "./admin/ruta.retiro";
 import rutareserva from "./user/ruta.reserva";
 import rutahistorial from "./admin/ruta.historial";
-import { verificarToken} from "../middleware/oauth";
 
 const rutas = Router();
 // rutas admin
-rutas.use("/", rutaregistro);
+rutas.use("/" ,rutaregistro);
 rutas.use("/admin" ,rutacomputador);
 rutas.use("/admin",rutaaccesorio);
 rutas.use("/admin",rutasancion);

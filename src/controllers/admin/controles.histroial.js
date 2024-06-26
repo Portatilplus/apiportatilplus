@@ -5,10 +5,10 @@ import mensaje from "../../res/mensaje";
 // historial completo
 const historial = async(req, res)=>{
     try {
-        const respuesta = await pool.query(`CALL sp_historial_reserva();`);
+        const respuesta = await pool.query(`CALL sp_historial_usuarios();`);
         mensaje.success(req, res, 200, respuesta[0]);
     } catch (error) {
-        mensaje.error(req, res, 500, "error en el histroial");
+        mensaje.error(req, res, 500, "error en el historial");
     }
 }
 
