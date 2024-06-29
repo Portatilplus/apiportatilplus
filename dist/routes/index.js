@@ -13,15 +13,16 @@ var _ruta4 = _interopRequireDefault(require("./admin/ruta.sancion"));
 var _ruta5 = _interopRequireDefault(require("./admin/ruta.retiro"));
 var _ruta6 = _interopRequireDefault(require("./user/ruta.reserva"));
 var _ruta7 = _interopRequireDefault(require("./admin/ruta.historial"));
-var _oauth = require("../middleware/oauth");
+var _ruta8 = _interopRequireDefault(require("./admin/ruta.nota"));
 var rutas = (0, _express.Router)();
 // rutas admin
-rutas.use("/admin", _ruta["default"]);
+rutas.use("/", _ruta["default"]);
 rutas.use("/admin", _ruta2["default"]);
-rutas.use("/admin", _oauth.verificarToken, _ruta3["default"]);
-rutas.use("/admin", _oauth.verificarToken, _ruta4["default"]);
-rutas.use("/admin", _oauth.verificarToken, _ruta5["default"]);
-rutas.use("/admin", _oauth.verificarToken, _ruta7["default"]);
+rutas.use("/admin", _ruta3["default"]);
+rutas.use("/admin", _ruta4["default"]);
+rutas.use("/admin", _ruta5["default"]);
+rutas.use("/admin", _ruta7["default"]);
+rutas.use("/admin", _ruta8["default"]);
 
 // rutas user
 

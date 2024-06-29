@@ -11,10 +11,10 @@ const listarcomputador = async(req, res)=>{
     }
 }
 const agregarcomputador = async(req, res)=>{
-    const {marca,modelo,area,estado_computador,fecha} = req.body;
+    const {marca,modelo,area,estado,fecha} = req.body;
 
 
-    if(!marca || !modelo || !area || !estado_computador|| !fecha){
+    if(!marca || !modelo || !area || !estado|| !fecha){
         mensaje.error(req, res, 400, "campos vacios");
         return;
     }
@@ -23,7 +23,7 @@ const agregarcomputador = async(req, res)=>{
         const respuesta = await pool.query(`CALL sp_agregar_registro_computador('${marca}',
             '${modelo}',
             '${area}',
-            '${estado_computador}','${fecha}');`)
+            '${estado}','${fecha}');`)
         if(respuesta[0].affectedRows==1){
             mensaje.success(req, res, 200, "computador agregado");
         }else{
@@ -36,13 +36,13 @@ const agregarcomputador = async(req, res)=>{
 }
 
 const modificarcomputador = async(req, res)=>{
-    const {idcomputador,marca,modelo,area,estado_computador,fecha} = req.body;
+    const {idcomputador,marca,modelo,area,estado,fecha} = req.body;
     
     try {
     const respuesta = await pool.query(`CALL sp_modificar_registro_computador('${idcomputador}','${marca}',
     '${modelo}',
     '${area}',
-    '${estado_computador}','${fecha}');`);
+    '${estado}','${fecha}');`);
     if(respuesta[0].affectedRows==1){
         mensaje.success(req, res, 200, "computador modificado");
     }else{

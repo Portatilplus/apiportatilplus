@@ -43,12 +43,12 @@ var listarcomputador = /*#__PURE__*/function () {
 }();
 var agregarcomputador = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var _req$body, marca, modelo, area, estado_computador, respuesta;
+    var _req$body, marca, modelo, area, estado, fecha, respuesta;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          _req$body = req.body, marca = _req$body.marca, modelo = _req$body.modelo, area = _req$body.area, estado_computador = _req$body.estado_computador;
-          if (!(!marca || !modelo || !area || !estado_computador)) {
+          _req$body = req.body, marca = _req$body.marca, modelo = _req$body.modelo, area = _req$body.area, estado = _req$body.estado, fecha = _req$body.fecha;
+          if (!(!marca || !modelo || !area || !estado || !fecha)) {
             _context2.next = 4;
             break;
           }
@@ -57,7 +57,7 @@ var agregarcomputador = /*#__PURE__*/function () {
         case 4:
           _context2.prev = 4;
           _context2.next = 7;
-          return _db["default"].query("CALL sp_agregar_registro_computador('".concat(marca, "',\n            '").concat(modelo, "',\n            '").concat(area, "',\n            '").concat(estado_computador, "');"));
+          return _db["default"].query("CALL sp_agregar_registro_computador('".concat(marca, "',\n            '").concat(modelo, "',\n            '").concat(area, "',\n            '").concat(estado, "','").concat(fecha, "');"));
         case 7:
           respuesta = _context2.sent;
           if (respuesta[0].affectedRows == 1) {
@@ -83,14 +83,14 @@ var agregarcomputador = /*#__PURE__*/function () {
 }();
 var modificarcomputador = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
-    var _req$body2, idcomputador, marca, modelo, area, estado_computador, respuesta;
+    var _req$body2, idcomputador, marca, modelo, area, estado, fecha, respuesta;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _req$body2 = req.body, idcomputador = _req$body2.idcomputador, marca = _req$body2.marca, modelo = _req$body2.modelo, area = _req$body2.area, estado_computador = _req$body2.estado_computador;
+          _req$body2 = req.body, idcomputador = _req$body2.idcomputador, marca = _req$body2.marca, modelo = _req$body2.modelo, area = _req$body2.area, estado = _req$body2.estado, fecha = _req$body2.fecha;
           _context3.prev = 1;
           _context3.next = 4;
-          return _db["default"].query("CALL sp_modificar_registro_computador('".concat(idcomputador, "','").concat(marca, "',\n    '").concat(modelo, "',\n    '").concat(area, "',\n    '").concat(estado_computador, "');"));
+          return _db["default"].query("CALL sp_modificar_registro_computador('".concat(idcomputador, "','").concat(marca, "',\n    '").concat(modelo, "',\n    '").concat(area, "',\n    '").concat(estado, "','").concat(fecha, "');"));
         case 4:
           respuesta = _context3.sent;
           if (respuesta[0].affectedRows == 1) {
@@ -120,23 +120,23 @@ var eleminarcomputador = /*#__PURE__*/function () {
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          idcomputador = req.body.idcomputador;
+          idcomputador = req.params.idcomputador;
           _context4.prev = 1;
           _context4.next = 4;
-          return _db["default"].query("CALL sp_eliminar_registro_computador(".concat(idcomputador, ");"));
+          return _db["default"].query('CALL sp_eliminar_registro_computador(?)', [idcomputador]);
         case 4:
           respuesta = _context4.sent;
-          if (respuesta[0].affectedRows == 1) {
-            _mensaje["default"].success(req, res, 200, "computador eliminado");
+          if (respuesta[0].affectedRows === 1) {
+            _mensaje["default"].success(req, res, 200, "Computador eliminado");
           } else {
-            _mensaje["default"].error(req, res, 400, "error al eliminar computador");
+            _mensaje["default"].error(req, res, 400, "Error al eliminar computador");
           }
           _context4.next = 11;
           break;
         case 8:
           _context4.prev = 8;
           _context4.t0 = _context4["catch"](1);
-          _mensaje["default"].error(req, res, 500, "error al intentar eliminar");
+          _mensaje["default"].error(req, res, 500, "Error al intentar eliminar");
         case 11:
         case "end":
           return _context4.stop();

@@ -116,7 +116,7 @@ var eliminarsancion = /*#__PURE__*/function () {
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          id_sancion = req.body.id_sancion;
+          id_sancion = req.params.id_sancion;
           _context4.prev = 1;
           _context4.next = 4;
           return _db["default"].query("CALL sp_eliminar_sancion(".concat(id_sancion, ");"));

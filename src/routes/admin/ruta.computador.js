@@ -7,7 +7,7 @@ const rutacomputador = Router();
 
 rutacomputador.get("/computador", metodos.listarcomputador);
 rutacomputador.post("/computador",  metodos.agregarcomputador);
-rutacomputador.put("/computador",  metodos.modificarcomputador);
+rutacomputador.put("/computador/",  metodos.modificarcomputador);
 rutacomputador.delete("/computador/:idcomputador",metodos.eleminarcomputador);
 
 

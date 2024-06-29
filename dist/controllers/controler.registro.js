@@ -12,6 +12,7 @@ var _db = _interopRequireDefault(require("../database/db.js"));
 var _mensaje = _interopRequireDefault(require("../res/mensaje"));
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 var _dotenv = require("dotenv");
+var _morgan = require("morgan");
 (0, _dotenv.config)();
 var agregarregistro = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
@@ -73,7 +74,7 @@ var agregarregistro = /*#__PURE__*/function () {
 
 var login = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var _req$body, correo, contrasena, resultado, contracorrecta, payload, token;
+    var _req$body, correo, contrasena, resultado, contracorrecta, payload, _token;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -94,7 +95,7 @@ var login = /*#__PURE__*/function () {
             _context2.next = 11;
             break;
           }
-          error(req, res, 400, "Usuario no encontrado");
+          _mensaje["default"].error(req, res, 400, "Usuario no encontrado");
           return _context2.abrupt("return");
         case 11:
           _context2.next = 13;
@@ -111,11 +112,11 @@ var login = /*#__PURE__*/function () {
           payload = {
             correo: resultado.correo
           };
-          token = _jsonwebtoken["default"].sign(payload, process.env.PRIVATE_KEY, {
+          _token = _jsonwebtoken["default"].sign(payload, process.env.PRIVATE_KEY, {
             expiresIn: process.env.EXPIRES_IN
           });
           _mensaje["default"].success(req, res, 200, {
-            token: token
+            token: _token
           });
         case 22:
           _context2.next = 27;

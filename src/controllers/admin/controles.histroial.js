@@ -25,6 +25,8 @@ const listarhistorial = async(req, res)=>{
     }
 }
 
+
+
 export const metodos = {
     historial,
     listarhistorial

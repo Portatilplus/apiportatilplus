@@ -18,7 +18,7 @@ var historial = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return _db["default"].query("CALL sp_historial_reserva();");
+          return _db["default"].query("CALL sp_historial_usuarios();");
         case 3:
           respuesta = _context.sent;
           _mensaje["default"].success(req, res, 200, respuesta[0]);
@@ -27,7 +27,7 @@ var historial = /*#__PURE__*/function () {
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
-          _mensaje["default"].error(req, res, 500, "error en el histroial");
+          _mensaje["default"].error(req, res, 500, "error en el historial");
         case 10:
         case "end":
           return _context.stop();

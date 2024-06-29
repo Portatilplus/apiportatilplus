@@ -25,30 +25,30 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_accesorios` (IN `_numero_accesorio` INT(10), IN `_nombre_accesorio` VARCHAR(100))   BEGIN
+CREATE  PROCEDURE `sp_agregar_accesorios` (IN `_numero_accesorio` INT(10), IN `_nombre_accesorio` VARCHAR(100))   BEGIN
 INSERT INTO accesorios(numero_accesorio,nombre_accesorio) VALUES
 (_numero_accesorio,_nombre_accesorio);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_registro_computador` (IN `_marca` VARCHAR(100), IN `_modelo` VARCHAR(200), IN `_area` ENUM('Diseño','Software','Administracion'), IN `_estado_computador` ENUM('Reservado','Disponible','Pendiente'), IN `_fecha` DATE)   BEGIN
+CREATE  PROCEDURE `sp_agregar_registro_computador` (IN `_marca` VARCHAR(100), IN `_modelo` VARCHAR(200), IN `_area` ENUM('Diseño','Software','Administracion'), IN `_estado_computador` ENUM('Reservado','Disponible','Pendiente'), IN `_fecha` DATE)   BEGIN
 INSERT INTO registro_computador(marca,modelo,area,estado_computador, fecha) VALUES
 (_marca,_modelo,_area,_estado_computador, _fecha);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_registro_usuario` (IN `_nombre` VARCHAR(100), IN `_apellido` VARCHAR(50), IN `_telefono` INT(10), IN `_correo` VARCHAR(20), IN `_contrasena` VARCHAR(100), IN `_rol` ENUM('Admin','Usuario','Instructor'))   BEGIN
+CREATE  PROCEDURE `sp_agregar_registro_usuario` (IN `_nombre` VARCHAR(100), IN `_apellido` VARCHAR(50), IN `_telefono` INT(10), IN `_correo` VARCHAR(20), IN `_contrasena` VARCHAR(100), IN `_rol` ENUM('Admin','Usuario','Instructor'))   BEGIN
 INSERT INTO registros(nombre,apellido,telefono,correo,contrasena,rol) VALUES
 (_nombre,_apellido,_telefono,_correo,_contrasena,_rol);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_retiro` (IN `_id_registro` INT, IN `_fecha` DATE)   BEGIN
+CREATE  PROCEDURE `sp_agregar_retiro` (IN `_id_registro` INT, IN `_fecha` DATE)   BEGIN
 INSERT INTO retiros(id_registro, fecha) VALUES(_id_registro, _fecha);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_sancion` (IN `_id_registro` INT, IN `_motivo` VARCHAR(1000))   BEGIN
+CREATE  PROCEDURE `sp_agregar_sancion` (IN `_id_registro` INT, IN `_motivo` VARCHAR(1000))   BEGIN
 INSERT INTO sanciones(id_registro, motivo) VALUES (_id_registro, _motivo);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_editar_reservacion` (IN `_id_reserva` INT(10), IN `_nombre` VARCHAR(100), IN `_identificacion` INT(10), IN `_id_registro_computador` INT(10), IN `_fecha` TIMESTAMP)   BEGIN
+CREATE  PROCEDURE `sp_editar_reservacion` (IN `_id_reserva` INT(10), IN `_nombre` VARCHAR(100), IN `_identificacion` INT(10), IN `_id_registro_computador` INT(10), IN `_fecha` TIMESTAMP)   BEGIN
 UPDATE reservacion
 SET nombre =
 CASE
@@ -73,71 +73,71 @@ END
 WHERE id_reserva = _id_reserva;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_accesorio` (IN `_id_accesorio` INT(10))   BEGIN
+CREATE  PROCEDURE `sp_eliminar_accesorio` (IN `_id_accesorio` INT(10))   BEGIN
 DELETE FROM accesorios
 WHERE id_accesorio = _id_accesorio;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_registro_computador` (IN `_idcomputador` INT)   BEGIN
+CREATE  PROCEDURE `sp_eliminar_registro_computador` (IN `_idcomputador` INT)   BEGIN
  DELETE FROM registro_computador
  WHERE idcomputador = _idcomputador;
  END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_registro_usuario` (IN `_id_registro` INT(10))   BEGIN
+CREATE  PROCEDURE `sp_eliminar_registro_usuario` (IN `_id_registro` INT(10))   BEGIN
 DELETE FROM registros
 WHERE id_registro = _id_registro;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_reservacion` (IN `_id_reserva` INT(10))   BEGIN 
+CREATE  PROCEDURE `sp_eliminar_reservacion` (IN `_id_reserva` INT(10))   BEGIN 
 DELETE FROM reservacion
 WHERE id_reserva = _id_reserva;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_retiro` (IN `_id_retiro` INT)   BEGIN
+CREATE  PROCEDURE `sp_eliminar_retiro` (IN `_id_retiro` INT)   BEGIN
 
 DELETE FROM retiros
 WHERE id_retiro = _id_retiro;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_sancion` (IN `_id_sancion` INT)   BEGIN
+CREATE  PROCEDURE `sp_eliminar_sancion` (IN `_id_sancion` INT)   BEGIN
 DELETE FROM sanciones
 WHERE id_sancion = _id_sancion;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_historial_reserva` ()   BEGIN
+CREATE  PROCEDURE `sp_historial_reserva` ()   BEGIN
 SELECT * FROM reservacion;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_reservacion` (IN `_nombre` VARCHAR(100), IN `_identificacion` INT(10), IN `_id_registro_computador` INT(10))   BEGIN
+CREATE  PROCEDURE `sp_insertar_reservacion` (IN `_nombre` VARCHAR(100), IN `_identificacion` INT(10), IN `_id_registro_computador` INT(10))   BEGIN
 INSERT INTO reservacion(nombre,identificacion,id_registro_computador) VALUES
 (_nombre,_identificacion,_id_registro_computador);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_accesorios` ()   BEGIN
+CREATE  PROCEDURE `sp_listar_accesorios` ()   BEGIN
 SELECT * FROM accesorios;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_historial` (IN `_id_reserva` INT(10))   BEGIN
+CREATE  PROCEDURE `sp_listar_historial` (IN `_id_reserva` INT(10))   BEGIN
 SELECT * FROM reservacion WHERE id_reserva = _id_reserva;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_registro_computador` ()   BEGIN
+CREATE  PROCEDURE `sp_listar_registro_computador` ()   BEGIN
 SELECT * FROM registro_computador;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_registro_usuario` ()   BEGIN
+CREATE  PROCEDURE `sp_listar_registro_usuario` ()   BEGIN
 SELECT * FROM registros;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_retiro` ()   BEGIN
+CREATE  PROCEDURE `sp_listar_retiro` ()   BEGIN
 SELECT * FROM retiros;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_sanciones` ()   BEGIN
+CREATE  PROCEDURE `sp_listar_sanciones` ()   BEGIN
 SELECT * FROM sanciones;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_login` (IN `_correo` VARCHAR(200))   BEGIN
+CREATE  PROCEDURE `sp_login` (IN `_correo` VARCHAR(200))   BEGIN
 SELECT correo,contrasena FROM registros
 WHERE correo = _correo
 LIMIT 1;
@@ -145,7 +145,7 @@ LIMIT 1;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_accesorios` (IN `_id_accesorio` INT(10), IN `_numero_accesorio` INT(10), IN `_nombre_accesorio` VARCHAR(100))   BEGIN
+CREATE  PROCEDURE `sp_modificar_accesorios` (IN `_id_accesorio` INT(10), IN `_numero_accesorio` INT(10), IN `_nombre_accesorio` VARCHAR(100))   BEGIN
 UPDATE accesorios
 SET numero_accesorio =
 CASE
@@ -160,14 +160,14 @@ END
 WHERE id_accesorio = _id_accesorio;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_disponibilidad` (IN `_idcomputador` INT(10))   BEGIN
+CREATE  PROCEDURE `sp_modificar_disponibilidad` (IN `_idcomputador` INT(10))   BEGIN
 UPDATE registro_computador
 SET estado_computador= 'Reservado'
 
 WHERE idcomputador = _idcomputador;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_registro_computador` (IN `_idcomputador ` INT(10), IN `_marca` VARCHAR(100), IN `_modelo` VARCHAR(200), IN `_area` ENUM('Diseño','Sorftware','Administracion'), IN `_estado_computador` ENUM('Disponible','Pendiente','Reservado'), IN `_fecha` DATE)   BEGIN
+CREATE  PROCEDURE `sp_modificar_registro_computador` (IN `_idcomputador ` INT(10), IN `_marca` VARCHAR(100), IN `_modelo` VARCHAR(200), IN `_area` ENUM('Diseño','Sorftware','Administracion'), IN `_estado_computador` ENUM('Disponible','Pendiente','Reservado'), IN `_fecha` DATE)   BEGIN
   UPDATE registro_computador
   SET marca =
     CASE 
@@ -198,7 +198,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_registro_computador` (
   WHERE idcomputador = _idcomputador;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_registro_usuario` (IN `_id_registro` INT(10), IN `_nombre` VARCHAR(100), IN `_apellido` VARCHAR(50), IN `_telefono` INT(10), IN `_correo` VARCHAR(200), IN `_contrasena` VARCHAR(50), IN `_rol` ENUM('Usuario','Instructor'))   BEGIN
+CREATE  PROCEDURE `sp_modificar_registro_usuario` (IN `_id_registro` INT(10), IN `_nombre` VARCHAR(100), IN `_apellido` VARCHAR(50), IN `_telefono` INT(10), IN `_correo` VARCHAR(200), IN `_contrasena` VARCHAR(50), IN `_rol` ENUM('Usuario','Instructor'))   BEGIN
 UPDATE registros
 SET nombre =
 CASE
@@ -233,7 +233,7 @@ END
 WHERE id_registro = _id_registro;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_retiro` (IN `_id_retiro` INT, IN `_id_registro` INT, IN `_fecha` DATE)   BEGIN
+CREATE  PROCEDURE `sp_modificar_retiro` (IN `_id_retiro` INT, IN `_id_registro` INT, IN `_fecha` DATE)   BEGIN
 UPDATE retiros
 SET id_registro =
 CASE
@@ -248,7 +248,7 @@ END
 WHERE id_retiro = _id_retiro;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_sancion` (IN `_id_sancion` INT, IN `_id_registro` INT, IN `_motivo` VARCHAR(1000))   BEGIN
+CREATE  PROCEDURE `sp_modificar_sancion` (IN `_id_sancion` INT, IN `_id_registro` INT, IN `_motivo` VARCHAR(1000))   BEGIN
 UPDATE sanciones
 SET id_registro =
 CASE
@@ -263,22 +263,22 @@ END
 WHERE id_sancion = _id_sancion;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_computadores` ()   BEGIN
+CREATE  PROCEDURE `sp_mostrar_computadores` ()   BEGIN
 SELECT * FROM registro_computador 
 WHERE estado_computador LIKE '%Disponible%';
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_registro_usuario` (IN `_idregistro` INT)   BEGIN
+CREATE  PROCEDURE `sp_mostrar_registro_usuario` (IN `_idregistro` INT)   BEGIN
 SELECT id_registro,nombre,apellido,telefono,correo,contrasena,rol FROM registros
 WHERE id_registro = _idregistro;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_realizar_reserva` (IN `_nombre` VARCHAR(100), IN `_id_registro_computador` INT(10), IN `_fecha` DATE)   BEGIN
+CREATE  PROCEDURE `sp_realizar_reserva` (IN `_nombre` VARCHAR(100), IN `_id_registro_computador` INT(10), IN `_fecha` DATE)   BEGIN
 INSERT INTO reservacion (nombre, id_registro_computador, fecha)
 VALUES (_nombre, _id_registro_computador, _fecha);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_roles` (IN `_correo` VARCHAR(200))   BEGIN
+CREATE  PROCEDURE `sp_roles` (IN `_correo` VARCHAR(200))   BEGIN
 SELECT rol FROM registros WHERE correo = _correo
 LIMIT 1;
 END$$

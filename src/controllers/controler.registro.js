@@ -3,6 +3,7 @@ import pool from "../database/db.js";
 import mensajes from "../res/mensaje";
 import jwt from "jsonwebtoken";
 import { config } from 'dotenv';
+import { token } from "morgan";
 config();
 
 
@@ -59,6 +60,7 @@ const login = async(req, res)=>{
         return;
     }
     try {
+        // const rol = await pool.query(`CALL sp_roles();`, [correo]);
         const resultado = await pool.query(`CALL sp_login(?);`,[correo]);
         if (resultado[0][0]==0) {
             mensajes.error(req, res, 400, "Usuario no encontrado");
@@ -70,8 +72,7 @@ const login = async(req, res)=>{
             return;
         }else{
             const payload ={
-                correo: resultado.correo,
-                rol : resultado.rol
+                correo: resultado.correo
             }
             let token = jwt.sign(
                 payload,
@@ -79,7 +80,14 @@ const login = async(req, res)=>{
                 {expiresIn: process.env.EXPIRES_IN});
     
           mensajes.success(req, res, 200, {token});
-        }       
+        } 
+        
+        // // condicion rol
+        // if(rol[0][0][0].rol === 'Admin'){
+        //   return mensajes.success(req, res, 200, {token, "rol": "/dash"});
+        // }else{
+        //     return mensajes.success(req, res, 200, "no se puede ingresar");
+        // }
     } catch (error) {
         mensajes.error(req, res, 500, "error al loguearse");
     }
