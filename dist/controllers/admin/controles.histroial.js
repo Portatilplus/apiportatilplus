@@ -69,7 +69,36 @@ var listarhistorial = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+var historialreserva = /*#__PURE__*/function () {
+  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
+    var respuesta;
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.prev = 0;
+          _context3.next = 3;
+          return _db["default"].query("CALL sp_historial_reserva();");
+        case 3:
+          respuesta = _context3.sent;
+          _mensaje["default"].success(req, res, 200, respuesta[0]);
+          _context3.next = 10;
+          break;
+        case 7:
+          _context3.prev = 7;
+          _context3.t0 = _context3["catch"](0);
+          _mensaje["default"].error(req, res, 500, "error en el historial");
+        case 10:
+        case "end":
+          return _context3.stop();
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return function historialreserva(_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 var metodos = exports.metodos = {
   historial: historial,
-  listarhistorial: listarhistorial
+  listarhistorial: listarhistorial,
+  historialreserva: historialreserva
 };

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { metodos } from "../controllers/controler.registro";
+import sancion from "../routes/admin/ruta.sancion"
 
 const rutaregistro = Router();
 

@@ -11,14 +11,14 @@ var _db = _interopRequireDefault(require("../../database/db"));
 var _mensaje = _interopRequireDefault(require("../../res/mensaje"));
 var agregarnotas = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var notas, respuesta;
+    var _req$body, tarea, notas, prioridad, estado, respuesta;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          notas = req.body.notas;
+          _req$body = req.body, tarea = _req$body.tarea, notas = _req$body.notas, prioridad = _req$body.prioridad, estado = _req$body.estado;
           _context.prev = 1;
           _context.next = 4;
-          return _db["default"].query("CALL sp_agregar_notas(?);", [notas]);
+          return _db["default"].query("CALL sp_agregar_notas('".concat(tarea, "','").concat(notas, "','").concat(prioridad, "','").concat(estado, "');"));
         case 4:
           respuesta = _context.sent;
           if (respuesta[0].affectedRows == 1) {
@@ -72,11 +72,11 @@ var listarnotas = /*#__PURE__*/function () {
 }();
 var modificarnotas = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
-    var _req$body, idnotas, notas, respuesta;
+    var _req$body2, idnotas, notas, respuesta;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _req$body = req.body, idnotas = _req$body.idnotas, notas = _req$body.notas;
+          _req$body2 = req.body, idnotas = _req$body2.idnotas, notas = _req$body2.notas;
           _context3.prev = 1;
           _context3.next = 4;
           return _db["default"].query("CALL sp_editar_notas(?,?);", [idnotas, notas]);

@@ -26,8 +26,19 @@ const listarhistorial = async(req, res)=>{
 }
 
 
+const historialreserva = async(req, res)=>{
+    try {
+        const respuesta = await pool.query(`CALL sp_historial_reserva();`);
+        mensaje.success(req, res, 200, respuesta[0]);
+    } catch (error) {
+        mensaje.error(req, res, 500, "error en el historial");
+    }
+}
+
+
 
 export const metodos = {
     historial,
-    listarhistorial
+    listarhistorial,
+    historialreserva
 }

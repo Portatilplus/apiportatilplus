@@ -63,7 +63,7 @@ const login = async(req, res)=>{
         // const rol = await pool.query(`CALL sp_roles();`, [correo]);
         const resultado = await pool.query(`CALL sp_login(?);`,[correo]);
         if (resultado[0][0]==0) {
-            mensajes.error(req, res, 400, "Usuario no encontrado");
+            mensajes.error(req, res, np400, "Usuario no encontrado");
             return;
     }
         const contracorrecta = await bcrypt.compare(contrasena, resultado[0][0][0].contrasena);
@@ -73,6 +73,7 @@ const login = async(req, res)=>{
         }else{
             const payload ={
                 correo: resultado.correo
+                // rol : resultado.rol
             }
             let token = jwt.sign(
                 payload,
@@ -81,13 +82,14 @@ const login = async(req, res)=>{
     
           mensajes.success(req, res, 200, {token});
         } 
-        
         // // condicion rol
-        // if(rol[0][0][0].rol === 'Admin'){
-        //   return mensajes.success(req, res, 200, {token, "rol": "/dash"});
-        // }else{
-        //     return mensajes.success(req, res, 200, "no se puede ingresar");
+        // if (resultado.rol === 'Admin') {
+        //     mensajes.success(req, res, 200, { token, "rol": "/dash" });
+        // } else {
+        //     mensajes.error(req, res, 403, "Acceso denegado");
         // }
+        
+        
     } catch (error) {
         mensajes.error(req, res, 500, "error al loguearse");
     }

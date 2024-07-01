@@ -39,18 +39,18 @@ import mensaje from "../../res/mensaje";
 // }
 
 const reservacion = async (req, res) => {
-    const { nombre, id_accesorio, id_registro_computador, fecha } = req.body;
+    const { nombre, id_accesorio, id_registro_computador,estado, fecha } = req.body;
 
     try {
         // Verificar si el computador está disponible
-        const [computadorDisponible] = await pool.query(`CALL sp_verificar_disponibilidad_computador(?);`, [id_registro_computador]);
+        const [computadorDisponible] = await pool.query(`CALL 	sp_mostrar_computadores(?);`, [id_registro_computador]);
         if (computadorDisponible.length === 0 || computadorDisponible[0].estado !== 'Disponible') {
             return mensaje.error(req, res, 400, "Computador no disponible");
         }
 
         // Verificar si el accesorio está disponible (si se proporcionó)
         if (id_accesorio) {
-            const [accesorioDisponible] = await pool.query(`CALL sp_verificar_disponibilidad_accesorio(?);`, [id_accesorio]);
+            const [accesorioDisponible] = await pool.query(`CALL sp_mostrar_accesorios(?);`, [id_accesorio]);
             if (accesorioDisponible.length === 0 || accesorioDisponible[0].estado !== 'Disponible') {
                 return mensaje.error(req, res, 400, "Accesorio no disponible");
             }

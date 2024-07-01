@@ -7,6 +7,8 @@ import rutaretiro from "./admin/ruta.retiro";
 import rutareserva from "./user/ruta.reserva";
 import rutahistorial from "./admin/ruta.historial";
 import rutanota from "./admin/ruta.nota";
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from '../tools/swagger-output.json';
 
 const rutas = Router();
 // rutas admin
@@ -17,6 +19,7 @@ rutas.use("/admin",rutasancion);
 rutas.use("/admin",rutaretiro);
 rutas.use("/admin", rutahistorial);
 rutas.use("/admin", rutanota);
+rutas.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 

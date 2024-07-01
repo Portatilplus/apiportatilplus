@@ -95,7 +95,7 @@ var login = /*#__PURE__*/function () {
             _context2.next = 11;
             break;
           }
-          _mensaje["default"].error(req, res, 400, "Usuario no encontrado");
+          _mensaje["default"].error(req, res, np400, "Usuario no encontrado");
           return _context2.abrupt("return");
         case 11:
           _context2.next = 13;
@@ -111,6 +111,7 @@ var login = /*#__PURE__*/function () {
         case 19:
           payload = {
             correo: resultado.correo
+            // rol : resultado.rol
           };
           _token = _jsonwebtoken["default"].sign(payload, process.env.PRIVATE_KEY, {
             expiresIn: process.env.EXPIRES_IN

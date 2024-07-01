@@ -45,14 +45,14 @@ var _mensaje = _interopRequireDefault(require("../../res/mensaje"));
 
 var reservacion = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var _req$body, nombre, id_accesorio, id_registro_computador, fecha, _yield$pool$query, _yield$pool$query2, computadorDisponible, _yield$pool$query3, _yield$pool$query4, accesorioDisponible, _yield$pool$query5, _yield$pool$query6, respuesta;
+    var _req$body, nombre, id_accesorio, id_registro_computador, estado, fecha, _yield$pool$query, _yield$pool$query2, computadorDisponible, _yield$pool$query3, _yield$pool$query4, accesorioDisponible, _yield$pool$query5, _yield$pool$query6, respuesta;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _req$body = req.body, nombre = _req$body.nombre, id_accesorio = _req$body.id_accesorio, id_registro_computador = _req$body.id_registro_computador, fecha = _req$body.fecha;
+          _req$body = req.body, nombre = _req$body.nombre, id_accesorio = _req$body.id_accesorio, id_registro_computador = _req$body.id_registro_computador, estado = _req$body.estado, fecha = _req$body.fecha;
           _context.prev = 1;
           _context.next = 4;
-          return _db["default"].query("CALL sp_verificar_disponibilidad_computador(?);", [id_registro_computador]);
+          return _db["default"].query("CALL \tsp_mostrar_computadores(?);", [id_registro_computador]);
         case 4:
           _yield$pool$query = _context.sent;
           _yield$pool$query2 = (0, _slicedToArray2["default"])(_yield$pool$query, 1);
@@ -68,7 +68,7 @@ var reservacion = /*#__PURE__*/function () {
             break;
           }
           _context.next = 12;
-          return _db["default"].query("CALL sp_verificar_disponibilidad_accesorio(?);", [id_accesorio]);
+          return _db["default"].query("CALL sp_mostrar_accesorios(?);", [id_accesorio]);
         case 12:
           _yield$pool$query3 = _context.sent;
           _yield$pool$query4 = (0, _slicedToArray2["default"])(_yield$pool$query3, 1);

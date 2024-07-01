@@ -3,10 +3,10 @@ import mensaje from "../../res/mensaje";
 
 
 const agregarnotas = async(req, res)=>{
-    const {notas}= req.body;
+    const {tarea,notas, prioridad, estado}= req.body;
 
     try {
-        const respuesta = await pool.query(`CALL sp_agregar_notas(?);`, [notas])
+        const respuesta = await pool.query(`CALL sp_agregar_notas('${tarea}','${notas}','${prioridad}','${estado}');`)
     if(respuesta[0].affectedRows == 1){
         mensaje.success(req, res, 200, "Notas agregadas");
     }else{

@@ -6,6 +6,7 @@ const rutahistorial = Router();
 
 rutahistorial.get("/historial", metodos.historial);
 rutahistorial.get("/historial/:id", metodos.listarhistorial);
+rutahistorial.get("/historialreserva", metodos.historialreserva);
 
 
 export default rutahistorial;
