@@ -26,7 +26,7 @@ const agregaraccesorio = async(req, res)=>{
 const listaraccesorio =async(req, res)=>{
     try {
         const respuesta = await pool.query(`CALL sp_listar_accesorios();`);
-        mensaje.success(req, res, 200, respuesta[0]);
+        mensaje.success(req, res, 200, respuesta[0][0][0]);
     } catch (error) {
         mensaje.error(req, res, 500, "error al mostrar");
     }
