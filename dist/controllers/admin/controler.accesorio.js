@@ -60,7 +60,7 @@ var listaraccesorio = /*#__PURE__*/function () {
           return _db["default"].query("CALL sp_listar_accesorios();");
         case 3:
           respuesta = _context2.sent;
-          _mensaje["default"].success(req, res, 200, respuesta[0]);
+          _mensaje["default"].success(req, res, 200, respuesta[0][0][0]);
           _context2.next = 10;
           break;
         case 7:
